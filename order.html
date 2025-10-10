@@ -1,63 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 10px;
-        }
-        th {
-            text-align: left;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: aqua;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Second Page</title>
+  <style>
+    /* General reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+      color: #0f172a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #ffffff;
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Table Styling */
+    table {
+      width: 60%;
+      background-color: #ffffff;
+      border-collapse: collapse;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      margin-bottom: 40px;
+      transition: transform 0.3s ease;
+    }
+
+    table:hover {
+      transform: scale(1.02);
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+      font-size: 1rem;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    th {
+      background-color: #0ea5e9;
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    tr:hover td {
+      background-color: #f1f5f9;
+    }
+
+    /* List Styling */
+    ol, ul {
+      background-color: #ffffff;
+      border-radius: 10px;
+      width: 40%;
+      padding: 20px 30px;
+      margin: 20px 0;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    ol li, ul li {
+      font-size: 1.1rem;
+      padding: 8px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    ol li:last-child, ul li:last-child {
+      border-bottom: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      table, ol, ul {
+        width: 90%;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
+  <h1>Second Page</h1>
 
-    <h1 style = " text-align: center;"> Second Page </h1>
+  <table>
+    <tr>
+      <th>Item</th>
+      <th>Price</th>
+    </tr>
+    <tr>
+      <td>Coffee</td>
+      <td>$3.00</td>
+    </tr>
+    <tr>
+      <td>Tea</td>
+      <td>$2.50</td>
+    </tr>
+    <tr>
+      <td>Sandwich</td>
+      <td>$5.00</td>
+    </tr>
+  </table>
 
-    <table>
-        <tr>
-            <th> Item </th>
-            <th> Price </th>
-        </tr>
-        <tr>
-            <td> Coffee </td>
-            <td> $3.00 </td>
-        </tr>
-        <tr>
-            <td> Tea </td>
-            <td> $2.50 </td>
-        </tr>
-        <tr>
-            <td> Sandwich </td>
-            <td> $5.00 </td>
-        </tr>
-    </table>
-    
+  <ol>
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Sandwich</li>
+  </ol>
 
-
-    <ol>
-        <li> Coffee </li>
-        <li> Tea </li>
-        <li> Sandwich </li>
-
-    </ol>
-
-
-    <Ul>
-        <li> Coffee </li>
-        <li> Tea </li>
-        <li> Sandwich </li>
-    </Ul>
+  <ul>
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Sandwich</li>
+  </ul>
 </body>
 </html>

@@ -2,15 +2,83 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-  <title>Document</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First Page</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      color: #f1f5f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: #38bdf8;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #f8fafc;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #cbd5e1;
+      margin-bottom: 20px;
+    }
+
+    /* Navigation Links */
+    a {
+      text-decoration: none;
+      color: #0ea5e9;
+      background-color: #f1f5f9;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: 500;
+      margin: 10px;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      background-color: #0ea5e9;
+      color: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    a:active {
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
-  <h1 style="text-align: center;"> First Page </h1>
-  <h1>HI I m Ammar </h1>
-  <p>I m a Full stack developer</p>
-  <p style="text-align: center;">
-    <a href="order.html"> Go to Second Page </a>
-    <a href="test.html"> Go to Third Page </a>
+  <h2>First Page</h2>
+  <h1>Hi, I'm Ammar</h1>
+  <p>I'm a Full Stack Developer</p>
+  <p>
+    <a href="order.html">Go to Second Page</a>
+    <a href="test.html">Go to Third Page</a>
+    <a href="hlo1.html">Go to Fourth Page</a>
+  </p>
 </body>
 </html>
