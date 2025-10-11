@@ -121,10 +121,43 @@
         font-size: 16px;
       }
     }
+     p {
+      font-size: 1.2rem;
+      color: #cbd5e1;
+      margin-bottom: 20px;
+    }
+
+    /* Navigation Links */
+    a {
+      text-decoration: none;
+      color: #0ea5e9;
+      background-color: #f1f5f9;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: 500;
+      margin: 10px;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      background-color: #0ea5e9;
+      color: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    a:active {
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
-
+    <p>
+    <a href="order.html">Day1</a>
+    <a href="test.html">Day2</a>
+    <a href="hlo1.html">Day3</a>
+  </p>
   <div class="container">
     <h1>Rock Paper Scissors Game</h1>
   </div>
@@ -136,6 +169,8 @@
   </div>
 
   <div id="result">Result: Waiting for your move...</div>
+
+
 
   <script>
     function play(player) {
