@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DOM + Promise + Async/Await Demo</title>
+  <style>
+    :root {
+      --bg: #0f1724;
+      --card: #0b1220;
+      --accent: #06b6d4;
+      --muted: #94a3b8;
+      --success: #10b981;
+      --danger: #ef4444;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #08101a 0%, #071129 100%);
+      color: #e6eef6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+    }
+
+    .wrap {
+      width: 920px;
+      max-width: 94vw;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 6px 20px rgba(2, 6, 23, 0.6);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 18px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    button {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      color: var(--accent);
+    }
+
+    button.primary {
+      background: linear-gradient(90deg, var(--accent), #7dd3fc);
+      color: #042027;
+      border: none;
+    }
+
+    .list {
+      background: rgba(255, 255, 255, 0.02);
+      padding: 12px;
+      border-radius: 8px;
+      min-height: 160px;
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+      padding: 8px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    .status {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .log {
+      height: 220px;
+      overflow: auto;
+      background: #041423;
+      padding: 10px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 13px;
+    }
+
+    .small {
+      font-size: 13px;
+    }
+
+    .danger {
+      color: var(--danger);
+    }
+
+    .success {
+      color: var(--success);
+    }
+
+    footer {
+      margin-top: 14px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    input[type=text] {
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      background: transparent;
+      color: inherit;
+    }
+    a {
+      text-decoration: none;
+      color: #0ea5e9;
+      background-color: #f1f5f9;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: 500;
+      margin: 10px;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      background-color: #0ea5e9;
+      color: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    a:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+
+    <p>
+    <a href="order.html">Day1</a>
+    <a href="test.html">Day2</a>
+    <a href="hlo1.html">Day3</a>
+    <a href="dom.html">Day4</a>
+    <a href="grid.html">Grid</a>
+    <a href="flex.html">Flex</a>
+  </p>
+  <div class="wrap">
+    <header>
+      <h1>DOM Manipulation + Promises + async/await — Demo</h1>
+    </header>
+
+    <div class="card grid">
+      <!-- Left Section: List & Controls -->
+      <section>
+        <div class="controls">
+          <input id="newItemInput" type="text" placeholder="Enter list item (e.g., 'Learn JS')" />
+          <button id="addBtn" class="primary">Add Item (DOM)</button>
+          <button id="clearBtn">Clear All</button>
+        </div>
+
+        <div class="list" id="itemList" aria-live="polite">
+          <!-- Items will be inserted here by JS -->
+        </div>
+
+        <footer>
+          <div class="status small">Items: <span id="count">0</span></div>
+          <div style="flex:1"></div>
+          <button id="simulateThen" title="Use Promise.then chaining">Simulate .then()</button>
+          <button id="simulateAsync" title="Use async/await">Simulate async/await</button>
+        </footer>
+      </section>
+
+      <!-- Right Section: Logs & Network -->
+      <aside>
+        <h3 style="margin-top:0">Console & Logs</h3>
+        <div class="log" id="logArea"></div>
+        <div style="height:12px"></div>
+        <div class="small">Network simulator:</div>
+        <div style="display:flex; gap:8px; margin-top:6px">
+          <button id="fast">Fast</button>
+          <button id="slow">Slow</button>
+          <button id="fail">Force Fail</button>
+        </div>
+      </aside>
+    </div>
+
+    <div style="height:8px"></div>
+
+    <div class="card" style="margin-top:12px">
+      <strong>What this shows</strong>
+      <ul>
+        <li>Basic DOM operations: create elements, update text, remove nodes, and keep a live count.</li>
+        <li>A Promise-based fake fetch (fakeFetch) that resolves after a delay.</li>
+        <li>Using <code>.then()</code> chaining vs <code>async/await</code> to call the same Promise and update the DOM based on result or error.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // --- Utility / DOM helpers ---
+    const $ = sel => document.querySelector(sel);
+    const log = msg => {
+      const area = $('#logArea');
+      const time = new Date().toLocaleTimeString();
+      area.innerText = time + ' — ' + msg + '\n' + area.innerText;
+    }
+
+    // Elements
+    const addBtn = $('#addBtn');
+    const clearBtn = $('#clearBtn');
+    const itemList = $('#itemList');
+    const countSpan = $('#count');
+    const newItemInput = $('#newItemInput');
+    const simulateThen = $('#simulateThen');
+    const simulateAsync = $('#simulateAsync');
+    const fastBtn = $('#fast');
+    const slowBtn = $('#slow');
+    const failBtn = $('#fail');
+
+    // State
+    let items = [];
+    let networkDelay = 800; // default ms
+    let forceFail = false;
+
+    // --- DOM manipulation functions ---
+    function renderList() {
+      itemList.innerHTML = '';
+      items.forEach((text, idx) => {
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.innerHTML = `<span>${escapeHtml(text)}</span>
+                         <div><button data-idx='${idx}' class='del'>Delete</button></div>`;
+        itemList.appendChild(div);
+      });
+      countSpan.innerText = items.length;
+    }
+
+    function addItem(text) {
+      if (!text || !text.trim()) return;
+      items.push(text.trim());
+      renderList();
+      log(`Added item: "${text.trim()}"`);
+    }
+
+    function removeItem(idx) {
+      const removed = items.splice(idx, 1);
+      renderList();
+      log(`Removed item: "${removed[0]}"`);
+    }
+
+    function escapeHtml(s) {
+      return s.replaceAll('&', '&amp;')
+              .replaceAll('<', '&lt;')
+              .replaceAll('>', '&gt;');
+    }
+
+    // --- Fake network operation returning a Promise ---
+    function fakeFetch(payload) {
+      log(`fakeFetch called with payload: ${JSON.stringify(payload)}`);
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (forceFail) {
+            reject(new Error('Network error: forced failure'));
+            return;
+          }
+          const result = { ok: true, received: payload, timestamp: Date.now() };
+          resolve(result);
+        }, networkDelay);
+      });
+    }
+
+    // --- Using Promise.then chaining ---
+    function runWithThen() {
+      const payload = { itemsCount: items.length, example: 'then' };
+      log('Starting .then() flow...');
+      fakeFetch(payload)
+        .then(res => {
+          log('.then() got response — updating DOM');
+          addItem('Server-saved (then) — ' + new Date(res.timestamp).toLocaleTimeString());
+          return res;
+        })
+        .then(() => log('.then() flow finished'))
+        .catch(err => {
+          log('Error in .then() flow: ' + err.message);
+          const el = document.createElement('div');
+          el.className = 'item danger';
+          el.textContent = 'Error: ' + err.message;
+          itemList.prepend(el);
+        });
+    }
+
+    // --- Using async/await ---
+    async function runWithAsync() {
+      const payload = { itemsCount: items.length, example: 'async' };
+      log('Starting async/await flow...');
+      try {
+        const res = await fakeFetch(payload);
+        log('async/await got response — updating DOM');
+        addItem('Server-saved (async) — ' + new Date(res.timestamp).toLocaleTimeString());
+      } catch (err) {
+        log('Error in async/await flow: ' + err.message);
+        const el = document.createElement('div');
+        el.className = 'item danger';
+        el.textContent = 'Error: ' + err.message;
+        itemList.prepend(el);
+      }
+    }
+
+    // --- Event wiring ---
+    addBtn.addEventListener('click', () => {
+      addItem(newItemInput.value);
+      newItemInput.value = '';
+      newItemInput.focus();
+    });
+
+    clearBtn.addEventListener('click', () => {
+      items = [];
+      renderList();
+      log('Cleared all items');
+    });
+
+    itemList.addEventListener('click', e => {
+      if (e.target.matches('button.del')) {
+        const idx = Number(e.target.dataset.idx);
+        removeItem(idx);
+      }
+    });
+
+    simulateThen.addEventListener('click', runWithThen);
+    simulateAsync.addEventListener('click', runWithAsync);
+
+    fastBtn.addEventListener('click', () => {
+      networkDelay = 200;
+      forceFail = false;
+      log('Network: FAST (200ms)');
+    });
+
+    slowBtn.addEventListener('click', () => {
+      networkDelay = 2000;
+      forceFail = false;
+      log('Network: SLOW (2000ms)');
+    });
+
+    failBtn.addEventListener('click', () => {
+      forceFail = true;
+      log('Network: FORCE FAIL enabled');
+    });
+
+    // initialize with some items
+    items = ['Read JS docs', 'Practice Promises', 'Build small project'];
+    renderList();
+    log('Demo loaded — try adding items and clicking "Simulate .then()" or "Simulate async/await".');
+  </script>
+</body>
+
+</html>
