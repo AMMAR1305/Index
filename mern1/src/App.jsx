@@ -1,22 +1,32 @@
-import  React from 'react'
+import React from 'react'
+import User from './components/User'
+import './App.css'
+import Navbar from './Components/Navbar'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Home from './Components/Pages/Home'
+import About from './Components/Pages/About'
+import Contact from './Components/Pages/Contact'
+import Services from './Components/Pages/Services'
+
 
 const App = () => {
+ 
   return (
-    <div>
-      <h1>Hello World</h1>
-      <p>This is my first React app.</p>
-      <p>Welcome to the world of React!</p>
-      <p>Let's build something amazing together.</p>
-      <p>Happy coding!</p>
-      <p>React makes it easy to create interactive UIs.</p>
-      <p>Enjoy your journey with React!</p>
-      <p>Stay curious and keep learning.</p>
-      <p>Thank you for visiting my React app!</p>
-      <p>Feel free to explore and experiment.</p>
-      <p>React is a powerful library for building web applications.</p>
-      <p>Have fun coding with React!</p>
-      <p>See you next time!</p>
-    </div>
+  <BrowserRouter>
+
+  <Navbar />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/services" element={<Services />} />
+      </Routes>
+
+
+      <h2>A </h2>
+  </BrowserRouter>
+  
   )
 }
 
