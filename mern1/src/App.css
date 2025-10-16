@@ -1,34 +1,125 @@
-/* Simple styles for the User card and skills badges */
+/* App.css */
 
-.user-card {
-  background: linear-gradient(135deg, #1f2937, #111827);
-  color: #fff;
-  padding: 1rem 1.25rem;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-  max-width: 520px;
-  margin: 1rem auto;
+
+/* ------------------------------------------------------------------
+   Root variables
+------------------------------------------------------------------ */
+:root {
+  --bg: #0f1720;          /* dark background */
+  --card: linear-gradient(135deg, #1f2937, #111827);
+  --text: #e0e7ff;        /* light text */
+  --muted: #9ca3af;       /* muted text */
+  --accent: #6366f1;      /* indigo */
+  --accent-glow: #818cf8;
+  --radius: 0.75rem;
+  --shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
 
-.user-title {
-  margin: 0 0 0.75rem 0;
-  font-size: 1.2rem;
-}
-
-.skills-list {
-  list-style: none;
-  padding: 0;
+/* ------------------------------------------------------------------
+   Global body/app layout
+------------------------------------------------------------------ */
+html, body, #root {
+  height: 100%;
   margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
   display: flex;
-  gap: 0.5rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2rem;
+}
+
+/* ------------------------------------------------------------------
+   Navbar styling
+------------------------------------------------------------------ */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  background: var(--card);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow);
   flex-wrap: wrap;
 }
 
-.skill-badge {
-  background: rgba(255,255,255,0.06);
-  color: #e6edf3;
-  padding: 0.35rem 0.6rem;
-  border-radius: 999px;
-  font-size: 0.9rem;
-  border: 1px solid rgba(255,255,255,0.04);
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.35rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+nav a:hover {
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--accent-glow);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+}
+
+.table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f4f4f9;
+  font-family: Arial, sans-serif;
+}
+
+form {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #007BFF;
+}
+
+input[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
 }
