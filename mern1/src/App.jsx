@@ -10,6 +10,7 @@ import Services from './Components/Pages/Services'
 import Forms from './Components/Pages/Forms'
 import State from './Hooks/State'
 import Like from './Hooks/Like'
+import Effect from './Hooks/Effect'
 
 
 const App = () => {
@@ -20,16 +21,17 @@ const App = () => {
   <Navbar />
 
       <Routes>
-        <Route path="/" component={Home} />
-        <Route path="/about" component={About } />
-        <Route path="/contact" component={Contact} />
-        <Route path="/forms" component={Forms } />
-        <Route path="/service" component={Services} />
+        <Route path="/" Component={Home} />
+        <Route path="/about" Component={About } />
+        <Route path="/contact" Component={Contact} />
+        <Route path="/forms" Component={Forms } />
+        <Route path="/service" Component={Services} />
+        <Route path="/state" Component={State} />
+        <Route path="/like" Component={Like} />
+        <Route path="/effect" Component={Effect} />
 
       </Routes>
-       <Forms/> 
-      <State />
-      <Like />
+       
 
 
      
