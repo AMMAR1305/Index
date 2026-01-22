@@ -22,6 +22,7 @@ mongoose.connect(
 });
 
 app.use('/auth', require('./routes/authRoutes'));
+app.use('/task', require('./routes/taskRouter'));
 
 app.get('/api', (req, res) => {
   res.send('Hello World! Hi Everyone!');
