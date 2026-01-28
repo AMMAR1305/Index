@@ -1,5 +1,5 @@
 
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 const Form = () => {
 
    const [form , SetForm] = useState({
@@ -9,6 +9,10 @@ const Form = () => {
           department : ""
    })
 
+   useEffect(() =>{
+      console.log("useEffect from Form")
+   })
+   
    const handleChange = (e) => {
       const {name , value } = e.target
       SetForm((prev) => ({

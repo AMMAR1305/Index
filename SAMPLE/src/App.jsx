@@ -10,7 +10,15 @@ import Service from "./Pages/Service"
 import Contact from "./Pages/Contact"
 import Products from "./Pages/Products"
 import ProductDetails from "./Pages/ProductDetails"
+import Users from "./Pages/Users"
 import Navbar from "./componenets/Navbar"
+import Reducr from "./Hooks/Reducr"
+
+
+import { createContext } from "react"
+
+
+export const userContext = createContext()
 
 const App = () => {
   return (
@@ -24,6 +32,13 @@ const App = () => {
       <Route path = "/contact" element = {<Contact/>}/>
       <Route path = "/products" element = {<Products/>}/>
       <Route path = "/products/:id" element = {<ProductDetails/>}/>
+      <Route path = "/user/:id" element = {<Users/>}/>
+      <Route path = "/form/" element = {<Form/>}/>
+      <Route path = "/state/" element = {<State/>}/>
+      <Route path = "/reducer/" element = {<Reducr/>}/>
+      <Route path = "/parent/" element = {<Parent/>}/>
+    
+
     </Routes>
 
     {/* <div>App</div>

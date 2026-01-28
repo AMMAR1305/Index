@@ -1,6 +1,9 @@
-import React from 'react'
+import {useContext} from 'react'
+import {userContext} from '../App'
 
-const Profile = ({name,Age,skills}) => { // store objects   (or) (props)
+const Profile = ({Age,skills}) => { // store objects   (or) (props)
+
+ const name  = useContext(userContext)
   return (
 
     <div>

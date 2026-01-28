@@ -1,22 +1,26 @@
 import {useParams} from 'react-router-dom'
+import {useState , useEffect} from "react"
 const ProductDetails = () => {
 
-     const products = [
-        {id : 1 , name : "Laptop" , price : "50000", description :"High-performance laptop with latest processor and graphics"},
-        {id : 2 , name : "Mobile" , price : "20000", description :"Latest smartphone with advanced camera and features"},
-        {id : 3 , name : "Tv" , price : "30000", description :"Smart TV with 4K resolution and streaming apps"},
-        {id : 4 , name : "Fridge" , price : "25000", description :"Energy-efficient refrigerator with large storage capacity"}
-    ]
+    const [product , setProduct] = useState({})
+
     const {id} = useParams()
-    const  product = products.find((p) => p.id === Number(id))
+
+    // const  product = products.find((p) => p.id === Number(id))
+    
+    useEffect(() =>{
+          fetch(`https://fakestoreapi.com/products/${id}`)
+          .then(response => response.json())
+          .then(data => {console.log(data)
+              setProduct(data)})
+            },[])
   return (
     <div>
           <h1>Products Details</h1>
-          <h2>Name :{product.name}</h2>
-          <h4>price : {product.price}</h4>
-          <h4>Description : {product.description}</h4
-          
-          >
+          <h3>Name :{product.title}</h3>
+          <h3>price : {product.price}</h3>
+          <h3>Category : {product.category}</h3>
+          <h3>Description : {product.description}</h3>
     </div>
   )
 }
